@@ -6,6 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Role;
+use App\Models\Verification;
 
 class SuperAdminSeeder extends Seeder
 {
@@ -21,7 +22,7 @@ class SuperAdminSeeder extends Seeder
             'type' => 'employee',
             'password' => bcrypt('password'),
             'is_admin' => true,
-            'is_verify' => true,
+            'is_verified' => true,
         ]);
 
         // Create a role for the super admin with all permissions set to true
@@ -37,6 +38,13 @@ class SuperAdminSeeder extends Seeder
             'manage_verification' => true,
         ]);
 
-        $this->command->info('Super admin user and role created!');
+        // Make the super admin's account verified
+        $superAdminRole = Role::create([
+            'user_id' => $superAdmin->id,
+            'campus_id' => '01-SA-0001',
+            'status' => 'verified',
+        ]);
+
+        $this->command->info('Super admin created!');
     }
 }

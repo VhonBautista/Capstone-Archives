@@ -2,7 +2,7 @@
 This guide will walk you through the steps to install and set up the project on your local machine.
 
 ## Step 1: Clone the Repository
-  git clone <URL>
+  git clone </ repo url />
 
 ## Step 3: Install Dependencies
   * composer install
@@ -32,6 +32,7 @@ This guide will walk you through the steps to install and set up the project on 
 
 ## Step 8: Seed the Database (Optional)
   php artisan db:seed
+  this will create a super admin user. email: superadmin@admin.com, password: password
 
 ## Step 9: Start the Development Server
   npm run dev
