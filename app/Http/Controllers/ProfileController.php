@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User;
 use App\Models\Verification;
+use App\Notifications\NewNotification;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
@@ -74,6 +77,20 @@ class ProfileController extends Controller
             ]);
         }
 
+        $admins = User::where('is_admin', true)
+            ->whereHas('role', function($query) {
+                $query->where('manage_verification', true);
+            })
+            ->get();
+              
+        $title = $user->firstname . ' ' . $user->lastname;
+        $type = 'Verification';
+        $message = ' would like to verify their ' . $user->type . ' ID number.';
+        $url = '/user/verification';
+        $color = 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300';
+        
+        Notification::send($admins, new NewNotification($title, $type, $message, $url, $color));
+
         return Redirect::route('profile.edit')->with('status', 'verification-sent');
     }
 
@@ -99,6 +116,20 @@ class ProfileController extends Controller
                 'campus_id' => strtoupper($request->campus_id),
             ]);
         }
+        // make a function instead
+        $admins = User::where('is_admin', true)
+            ->whereHas('role', function($query) {
+                $query->where('manage_verification', true);
+            })
+            ->get();
+              
+        $title = $user->firstname . ' ' . $user->lastname;
+        $type = 'Verification';
+        $message = ' would like to verify their ' . $user->type . ' ID number.';
+        $url = '/user/verification';
+        $color = 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300';
+        
+        Notification::send($admins, new NewNotification($title, $type, $message, $url, $color));
 
         return Redirect::route('profile.edit')->with('status', 'verification-sent');
     }

@@ -44,4 +44,19 @@ class User extends Authenticatable
     {
         return $this->hasOne(Verification::class);
     }
+
+    public function logs()
+    {
+        return $this->hasMany(Log::class);
+    }
+    
+    public function favorites()
+    {
+        return $this->belongsToMany(Capstone::class, 'favorites', 'user_id', 'capstone_id')->withTimestamps();
+    }
+
+    public function capstoneRequest()
+    {
+        return $this->hasOne(CapstoneRequest::class);
+    }
 }

@@ -16,7 +16,7 @@ class CheckAdmin
     public function handle(Request $request, Closure $next): Response
     {
         if (! $request->user()->is_admin) {
-            abort(403, 'Unauthorized action');
+            return redirect('/');
         }
 
         return $next($request);

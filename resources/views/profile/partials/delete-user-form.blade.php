@@ -32,11 +32,11 @@
             </div>
 
             <div class="mt-6 flex justify-end">
-                <button type="button" x-on:click="$dispatch('close')" class="w-44 text-gray-900 bg-white-600 hover:bg-gray-50 border border-gray-300 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2 text-center dark:bg-white-600 dark:hover:bg-white-700 dark:focus:ring-red-800">
+                <button type="button" x-on:click="$dispatch('close')" class="text-gray-900 bg-white-600 hover:bg-gray-50 border border-gray-300 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2 text-center dark:bg-white-600 dark:hover:bg-white-700 dark:focus:ring-red-800">
                     {{ __('Cancel') }}
                 </button>
 
-                <button type="submit" class="w-44 ml-3 text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                <button type="submit" class="ml-3 text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
                     {{ __('Delete Account') }}
                 </button>
             </div>
